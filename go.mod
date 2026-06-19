@@ -1,4 +1,4 @@
-module github.com/tyler-mcmullin/GoBackend
+module github.com/tyler-mcmullin/go-backend
 
 go 1.26.2
 
