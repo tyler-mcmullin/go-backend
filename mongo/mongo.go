@@ -1,14 +1,13 @@
 package mongo
 
 import (
-
 	"context"
-    "go.mongodb.org/mongo-driver/v2/mongo"
-    "go.mongodb.org/mongo-driver/v2/mongo/options"
-    "time"
-	"os"
 	"log"
+	"os"
+	"time"
 
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 var MongoClient *mongo.Client
@@ -25,11 +24,11 @@ func CreateMongoConnection() error {
 
 	client, err := mongo.Connect(options.Client().ApplyURI(uri))
 	if err != nil {
-		panic(err)
+		log.Fatal("Error: Failed to connect to MongoDB")
 	}
 
 	MongoClient = client
 
 	return nil
-	
+
 }
