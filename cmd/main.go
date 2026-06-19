@@ -5,16 +5,17 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/tyler-mcmullin/go-backend/mongo"
+	"github.com/tyler-mcmullin/go-backend/db"
+	"github.com/tyler-mcmullin/go-backend/handlers"
 )
 
 func main() {
 
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load("../.env"); err != nil {
 		panic(err)
 	}
 
-	if err := mongo.CreateMongoConnection(); err != nil {
+	if err := db.CreateMongoConnection(); err != nil {
 		panic(err)
 	}
 
@@ -25,6 +26,8 @@ func main() {
 			"message": "test",
 		})
 	})
+
+	r.GET("/items/:id", handlers.GetItem)
 
 	if err := r.Run(":8080"); err != nil {
 		panic(err)
