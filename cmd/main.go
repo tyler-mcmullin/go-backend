@@ -1,12 +1,11 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+
 	"github.com/tyler-mcmullin/go-backend/db"
-	"github.com/tyler-mcmullin/go-backend/handlers"
+	preorderRoutes "github.com/tyler-mcmullin/go-backend/routes"
 )
 
 func main() {
@@ -21,13 +20,7 @@ func main() {
 
 	r := gin.Default()
 
-	r.GET("/test", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "test",
-		})
-	})
-
-	r.GET("/items/:id", handlers.GetItem)
+	preorderRoutes.GetPreorderControllers(r)
 
 	if err := r.Run(":8080"); err != nil {
 		panic(err)
